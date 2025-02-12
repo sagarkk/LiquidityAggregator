@@ -6,14 +6,15 @@ import java.util.*;
 
 public class OfferBook implements Book{
     // Sorted list of order and liquidity provider
-    TreeSet<SellOrder> sellOrders;
+    SortedSet<SellOrder> sellOrders;
     Set<String> liquidityProviders;
     Map<Double, Integer> priceToQuantityMap;
     long priceQuantity;
     long totalQuantity;
 
     public OfferBook() {
-        sellOrders = new TreeSet<>();
+        TreeSet<SellOrder> ts = new TreeSet<>();
+        sellOrders = Collections.synchronizedSortedSet(ts);
         liquidityProviders = new HashSet<>();
         priceToQuantityMap = new HashMap<>();
         priceQuantity = 0;
