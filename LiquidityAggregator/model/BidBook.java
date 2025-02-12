@@ -6,14 +6,15 @@ import java.util.*;
 
 public class BidBook implements Book{
     // Sorted map of order and liquidity provider
-    TreeSet<BuyOrder> buyOrders;
+    SortedSet<BuyOrder> buyOrders;
     Set<String> liquidityProviders;
     Map<Double, Integer> priceToQuantityMap;
     long priceQuantity;
     long totalQuantity;
 
     public BidBook() {
-        buyOrders = new TreeSet<>();
+        TreeSet<BuyOrder> ts = new TreeSet<>();
+        buyOrders = Collections.synchronizedSortedSet(ts);
         liquidityProviders = new HashSet<>();
         priceToQuantityMap = new HashMap<>();
         priceQuantity = 0;
